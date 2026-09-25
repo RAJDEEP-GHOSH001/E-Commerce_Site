@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Not found — NovaCart{% endblock %}
+{% block content %}
+<section class="not-found">
+  <h1>Page not found</h1>
+  {% if slug %}
+  <p>No product matches “{{ slug }}”.</p>
+  {% else %}
+  <p>That page doesn't exist.</p>
+  {% endif %}
+  <a class="btn btn-primary" href="{{ url_for('index') }}">Back to all products</a>
+</section>
+{% endblock %}

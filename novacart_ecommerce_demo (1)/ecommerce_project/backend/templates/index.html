@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>Electronics, reviewed<br>by actual people.</h1>
+    <p>{{ stats.total_reviews }} reviews across {{ stats.total_products }} products, averaging {{ stats.avg_rating }} / 5. Every review below comes straight from the <code>/reviews</code> API.</p>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><strong>{{ stats.total_reviews }}</strong><span>reviews</span></div>
+    <div class="stat"><strong>{{ stats.total_products }}</strong><span>products</span></div>
+    <div class="stat"><strong>{{ stats.avg_rating }}</strong><span>avg rating</span></div>
+  </div>
+</section>
+
+<div class="layout">
+  <aside>
+    <h3>Category</h3>
+    <div id="categoryFilters"></div>
+    <h3>Minimum rating</h3>
+    <div id="ratingFilters"></div>
+    <h3>Sort by</h3>
+    <select id="sortSelect" class="select-block">
+      <option value="name">Name</option>
+      <option value="rating">Rating (high to low)</option>
+      <option value="price">Price (low to high)</option>
+      <option value="reviews">Most reviewed</option>
+    </select>
+  </aside>
+
+  <section class="grid-area">
+    <div class="toolbar">
+      <div class="count" id="resultCount"></div>
+    </div>
+    <div class="grid" id="productGrid"></div>
+    <div class="empty-state" id="emptyState" hidden>No products match those filters.</div>
+  </section>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %}

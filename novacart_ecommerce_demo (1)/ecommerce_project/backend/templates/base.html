@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}NovaCart — Electronics, honestly reviewed{% endblock %}</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<nav class="topnav">
+  <a class="logo" href="{{ url_for('index') }}">NovaCart</a>
+  <div class="nav-search">
+    <input type="text" id="navSearch" placeholder="Search products or brands…" autocomplete="off">
+    <div id="navSearchResults" class="nav-search-results"></div>
+  </div>
+  <div class="nav-right">
+    <button class="cart-btn" id="cartBtn">
+      Cart <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-head">
+    <span>Your cart</span>
+    <button id="cartClose" class="text-btn">Close ✕</button>
+  </div>
+  <div id="cartItems" class="cart-items"></div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span>Total</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+    <button class="btn btn-primary btn-block" id="checkoutBtn">Checkout</button>
+    <p class="cart-note">Demo only — this button just clears the cart, nothing is charged.</p>
+  </div>
+</div>
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="footer-col">
+    <div class="logo">NovaCart</div>
+    <p>A synthetic storefront built to demonstrate a review dataset and API. Nothing here is a real product.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Categories</h4>
+    <a href="{{ url_for('index') }}?category=Electronics">Electronics</a>
+    <a href="{{ url_for('index') }}?category=Computers">Computers</a>
+  </div>
+  <div class="footer-col">
+    <h4>API</h4>
+    <a href="/reviews?page_size=5">/reviews</a>
+    <a href="/products">/products</a>
+    <a href="/categories">/categories</a>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+{% block extra_scripts %}{% endblock %}
+</body>
+</html>
